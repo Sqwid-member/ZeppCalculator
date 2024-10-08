@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.calculator {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 450px;
+}
+
+#history {
+    width: 100%;
+    height: 60px; /* Висота для історії */
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 32px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 35px;
+    overflow-y: auto; /* Прокрутка для історії */
+}
+
+#result {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 32px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 35px;
+    overflow-x: auto; /* Додаємо горизонтальну прокрутку */
+    white-space: nowrap; /* Запобігаємо переносам рядків */
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 5px; /* Збільшили padding для вищих кнопок */
+    font-size: 40px; /* Збільшили шрифт кнопок */
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    height: 80px; /* Зробити кнопки вищими для квадратної форми */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004080; /* Темніший колір при натисканні */
+}
