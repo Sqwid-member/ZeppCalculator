@@ -1,67 +1,81 @@
 body {
+    background-color: #1B2229;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    overflow: hidden;
 }
 
-.calculator {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 450px;
-}
-
-#history {
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 60px; /* Висота для історії */
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 32px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 35px;
-    overflow-y: auto; /* Прокрутка для історії */
+    height: 100%;
+    z-index: 0;
 }
 
-#result {
+.cube {
+    position: absolute;
+    background: linear-gradient(to bottom right, #1B2229, #21232B);
+    border-radius: 25px;
+    transform: rotate(0deg);
+    transition: opacity 1s ease, transform 1s ease, left 1s ease, top 1s ease;
+}
+
+.cube.visible {
+    opacity: 1;
+}
+
+.search-box {
+    position: relative;
+    z-index: 1;
+    background-color: #21232B;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.search-box input[type="text"] {
     width: 100%;
-    height: 40px;
-    margin-bottom: 10px;
-    text-align: right;
-    font-size: 32px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 35px;
-    overflow-x: auto; /* Додаємо горизонтальну прокрутку */
-    white-space: nowrap; /* Запобігаємо переносам рядків */
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-button {
-    padding: 5px; /* Збільшили padding для вищих кнопок */
-    font-size: 40px; /* Збільшили шрифт кнопок */
+    max-width: 300px;
+    min-width: 200px;
+    padding: 13px;
     border: none;
-    border-radius: 35px;
+    border-radius: 20px;
+    outline: none;
+    background-color: #2A2E37;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+    animation: fadeInText 0.5s ease-in-out;
+    
+}
+.search-box input[type="text"]:hover {
+    background-color: #253c33; /* Світліший колір */
+    color: #FFFFFF; /* Білий текст */
+    transform: scale(1); /* Збільшення кнопки */
+    font-size: 1em; /* Збільшення розміру тексту */
+    
+
+}
+.search-box input[type="submit"] {
+    padding: 10px 20px;
+    background-color:#26423A ;
+    color: #B8AFA3;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    height: 80px; /* Зробити кнопки вищими для квадратної форми */
-    transition: background-color 0.3s;
+    align-self: flex-start;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, font-size 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-button:active {
-    background-color: #004080; /* Темніший колір при натисканні */
+.search-box input[type="submit"]:hover {
+    background-color: #2c4d40; /* Світліший колір */
+    color: #FFFFFF; /* Білий текст */
+    transform: scale(1.0); /* Збільшення кнопки */
+    font-size: 1.1em; /* Збільшення розміру тексту */
+  
 }
