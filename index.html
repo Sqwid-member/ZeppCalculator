@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Калькулятор</title>
+    <title>Browser in browser</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="calculator">
-        <textarea id="history" disabled placeholder="Історія" rows="3"></textarea>
-        <input type="text" id="result" disabled />
-        <div class="buttons">
-            <button onclick="appendToResult('/')">/</button>
-            <button onclick="appendToResult('*')">*</button>
-            <button onclick="appendToResult('-')">-</button>
-            <button onclick="appendToResult('+')">+</button>
-            <button onclick="appendToResult('9')">9</button>
-            <button onclick="appendToResult('8')">8</button>
-            <button onclick="appendToResult('7')">7</button>
-            <button onclick="clearResult()">C</button>
-            <button onclick="appendToResult('6')">6</button>
-            <button onclick="appendToResult('5')">5</button>
-            <button onclick="appendToResult('4')">4</button>
-            <button onclick="deleteLastChar()">←</button>
-            <button onclick="appendToResult('3')">3</button>
-            <button onclick="appendToResult('2')">2</button>
-            <button onclick="appendToResult('1')">1</button>
-            <button onclick="calculateResult()">=</button>
-            <button onclick="appendToResult('0')">0</button>
-            <button onclick="appendToResult('(')">(</button>
-            <button onclick="appendToResult(')')">)</button>
-        </div>
-    </div>
+    <div class="container" id="cubeContainer"></div>
+
+    <div class="search-box">
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Пошук Google">
+        <input type="submit" value="Пошук">
+    </form>
+</div>
+<div id="searchResult" style="width: 100%; height: 80vh; margin-top: 20px;"></div>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Запобігає стандартній поведінці форми
+        const query = document.getElementById('searchInput').value;
+        
+        if (query.trim() !== '') {
+            const resultContainer = document.getElementById('searchResult');
+
+            // Перевіряємо, чи вже існує iframe, якщо ні - створюємо його
+            let iframe = document.querySelector('#searchResult iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                resultContainer.appendChild(iframe);
+            }
+
+            // Оновлюємо src iframe
+            iframe.src = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+    });
+</script>
+
+
     <script src="script.js"></script>
 </body>
 </html>
